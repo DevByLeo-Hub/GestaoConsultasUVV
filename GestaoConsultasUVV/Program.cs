@@ -4,15 +4,13 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adiciona o banco de dados
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Configuração de Autenticação via Cookies (Obrigatório para o Login funcionar)
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/Login"; // Manda pra cá se tentar acessar algo bloqueado
+        options.LoginPath = "/Account/Login"; 
         options.AccessDeniedPath = "/Account/AccessDenied";
     });
 
@@ -31,7 +29,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// A ordem de segurança exigida pelo professor!
 app.UseAuthentication();
 app.UseAuthorization();
 

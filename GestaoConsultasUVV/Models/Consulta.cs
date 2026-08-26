@@ -17,7 +17,6 @@ namespace GestaoConsultasUVV.Models
         public DateTime DataHora { get; set; }
 
         [StringLength(500, ErrorMessage = "A descrição deve ter no máximo 500 caracteres.")]
-        // A interrogação abaixo avisa o .NET que o campo é opcional!
         public string? Descricao { get; set; }
 
         [Required(ErrorMessage = "O usuário é obrigatório.")]

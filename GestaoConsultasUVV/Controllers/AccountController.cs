@@ -25,7 +25,6 @@ namespace GestaoConsultasUVV.Controllers
         [HttpPost]
         public async Task<IActionResult> Cadastro(Usuario usuario)
         {
-            // MODO À PROVA DE FALHAS: Fazemos a checagem manual e direta do que realmente importa!
             if (!string.IsNullOrEmpty(usuario.Nome) && 
                 !string.IsNullOrEmpty(usuario.Email) && 
                 !string.IsNullOrEmpty(usuario.Senha) && 
@@ -35,11 +34,9 @@ namespace GestaoConsultasUVV.Controllers
                 _context.Usuarios.Add(usuario);
                 await _context.SaveChangesAsync();
                 
-                // Sucesso absoluto: manda direto pra tela de Login!
                 return RedirectToAction("Login");
             }
 
-            // Se a senha tiver menos de 6 caracteres, ele volta pra tela de cadastro
             return View(usuario);
         }
 

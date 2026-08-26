@@ -45,9 +45,6 @@ namespace GestaoConsultasUVV.Controllers
             consulta.UsuarioId = GetUsuarioLogadoId();
             ModelState.Remove("Usuario");
 
-            // O TRUQUE DE MESTRE AQUI:
-            // Se a descrição estiver nula, transformamos em uma string vazia "".
-            // Assim, o banco de dados SQL Server aceita sem reclamar!
             if (string.IsNullOrEmpty(consulta.Descricao))
             {
                 consulta.Descricao = "";
@@ -84,7 +81,6 @@ namespace GestaoConsultasUVV.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // 4. UPDATE: Abre a tela de edição com os dados preenchidos
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -95,7 +91,6 @@ namespace GestaoConsultasUVV.Controllers
             return View(consulta);
         }
 
-        // 4. UPDATE: Recebe os dados alterados e salva no banco
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Consulta consulta)
         {
